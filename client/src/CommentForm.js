@@ -1,16 +1,20 @@
 import React from 'react';
+import {CommentBox} from './CommentBox'
 
 export class CommentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       message: "",
-      author: ""
+      author: "",
+      createCommentBox: false
      };
      console.log(this.state);
      this.handleChange = this.handleChange.bind(this);
      this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+
 
   handleChange(event) {
     const target = event.target;
@@ -24,15 +28,21 @@ export class CommentForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Your comment was submitted to the Guest Book');
-    console.log(this.state.message);
-    console.log(this.state.author);
+    this.setState({
+      createCommentBox: true
+    });
+    // alert('Your comment was submitted to the Guest Book');
+    // console.log(this.state.message);
+    // console.log(this.state.author);
     console.log(this.state);
+    console.log('Setting state...');
     event.preventDefault();
+
   }
 
   render() {
     return(
+      <div>
       <form onSubmit={this.handleSubmit}>
         <label>
           Message
@@ -50,8 +60,10 @@ export class CommentForm extends React.Component {
           value={this.state.author}
           onChange={this.handleChange} />
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit"/>
       </form>
+      {this.state.createCommentBox ? <CommentBox message={this.state.message} author={this.state.author}/> : null}
+    </div>
     );
   }
 }
