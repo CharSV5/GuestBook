@@ -13,16 +13,14 @@ export class CommentForm extends React.Component {
   }
 
   handleChange(event) {
-    console.log(this.state);
     const target = event.target;
-    const value = target.name === 'message' ? target.value : target.value;
+    const value = target.value
     const name = target.name;
 
     this.setState({
       [name]: value
     });
     console.log(this.state);
-    console.log(target.textareainput);
   }
 
   handleSubmit(event) {
@@ -30,7 +28,6 @@ export class CommentForm extends React.Component {
     console.log(this.state.message);
     console.log(this.state.author);
     console.log(this.state);
-    console.log('test123');
     event.preventDefault();
   }
 
