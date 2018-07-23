@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { CommentForm } from './CommentForm'
 
-class GuestBook extends Component {
+class GuestBook extends React.Component {
   render() {
     return(
       <div className="GuestBook">
 
-      My guestbook!
+      <CommentForm />
       </div>
     )
   }
