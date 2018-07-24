@@ -1,5 +1,5 @@
 import React from 'react';
-import {CommentBox} from './CommentBox'
+import {Storage} from './Storage'
 
 export class CommentForm extends React.Component {
   constructor(props) {
@@ -12,8 +12,8 @@ export class CommentForm extends React.Component {
      console.log(this.state);
      this.handleChange = this.handleChange.bind(this);
      this.handleSubmit = this.handleSubmit.bind(this);
+     this.resetState = this.resetState.bind(this);
   }
-
 
 
   handleChange(event) {
@@ -28,16 +28,20 @@ export class CommentForm extends React.Component {
   }
 
   handleSubmit(event) {
+    console.log(this.state.message);
     this.setState({
       createCommentBox: true
     });
-    // alert('Your comment was submitted to the Guest Book');
-    // console.log(this.state.message);
-    // console.log(this.state.author);
+
     console.log(this.state);
     console.log('Setting state...');
     event.preventDefault();
+  }
 
+  resetState() {
+    this.setState({
+      createCommentBox: false
+    });
   }
 
   render() {
@@ -62,7 +66,8 @@ export class CommentForm extends React.Component {
         </label>
         <input type="submit" value="Submit"/>
       </form>
-      {this.state.createCommentBox ? <CommentBox message={this.state.message} author={this.state.author}/> : null}
+      <Storage message={this.state.message} author={this.state.author}/>
+
     </div>
     );
   }
