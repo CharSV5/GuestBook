@@ -1,8 +1,7 @@
 import React from 'react';
-import {Storage} from './Storage'
+import {CommentForm} from '../components/CommentForm'
 
-
-export class CommentForm extends React.Component {
+export class CommentFormContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,32 +40,14 @@ export class CommentForm extends React.Component {
     console.log(this.state);
   }
 
-
   render() {
     return(
-      <div>
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Message
-          <textarea
-            name="message"
-            value={this.state.message}
-            onChange={this.handleChange} />
-        </label>
-        <br />
-        <label>
-        Name
-        <input
-          name="author"
-          type="text"
-          value={this.state.author}
-          onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit"/>
-      </form>
-      <Storage messages={this.state.messages}/>
-
-    </div>
-    );
+      <CommentForm
+        message={this.state.message}
+        author={this.state.author}
+        messages={this.state.messages}
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange} />
+    )
   }
 }
