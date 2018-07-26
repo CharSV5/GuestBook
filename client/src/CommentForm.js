@@ -1,15 +1,15 @@
 import React from 'react';
 import {Storage} from './Storage'
 
+
 export class CommentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       message: "",
       author: "",
-      createCommentBox: false
+      messages: []
      };
-     console.log(this.state);
      this.handleChange = this.handleChange.bind(this);
      this.handleSubmit = this.handleSubmit.bind(this);
      this.resetState = this.resetState.bind(this);
@@ -24,25 +24,23 @@ export class CommentForm extends React.Component {
     this.setState({
       [name]: value
     });
-    console.log(this.state);
-  }
-
-  handleSubmit(event) {
-    console.log(this.state.message);
-    this.setState({
-      createCommentBox: true
-    });
-
-    console.log(this.state);
-    console.log('Setting state...');
-    event.preventDefault();
   }
 
   resetState() {
     this.setState({
-      createCommentBox: false
-    });
+      message: "",
+      author: ""
+    })
   }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    this.state.messages.push({author: this.state.author, message: this.state.message})
+    this.resetState()
+
+    console.log(this.state);
+  }
+
 
   render() {
     return(
@@ -66,7 +64,7 @@ export class CommentForm extends React.Component {
         </label>
         <input type="submit" value="Submit"/>
       </form>
-      <Storage message={this.state.message} author={this.state.author}/>
+      <Storage messages={this.state.messages}/>
 
     </div>
     );

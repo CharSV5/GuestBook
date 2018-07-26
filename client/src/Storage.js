@@ -11,28 +11,24 @@ export class Storage extends React.Component {
 
   addToStorage(propToAdd) {
     this.state.bin.push(propToAdd)
-    console.log('look here' + this.state.bin.slice(-1)[0]);
-    this.state.comments.push(this.state.bin.slice(-1)[0])
+    console.log('look here' + this.state.bin.slice(-1));
+    const lastComment = this.state.bin.slice(-1);
+    console.log('last comment' + lastComment);
+    this.state.comments.push(lastComment);
     console.log(this.state);
   }
 
-  addToStorage(propToAdd) {
-    
-  }
-
   render() {
-    const message = this.props.message
-    const author = this.props.author
-    const comment = { [author]: message }
-    this.addToStorage(comment)
-    console.log(this.state.comments);
+
+  const messages = this.props.messages
 
     return(
-      <div>
-        <h2>{message}</h2>
-        <h3>{author}</h3>
-
-      </div>
+      messages.map((message, i) =>
+        <div key={i}>
+          <h2>{message.message}</h2>
+          <h3>{message.author}</h3>
+        </div>
+      )
     )
   }
 }
